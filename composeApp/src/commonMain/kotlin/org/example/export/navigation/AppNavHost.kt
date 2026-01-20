@@ -6,6 +6,7 @@ import androidx.navigation.compose.composable
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import org.example.export.screen.ekyc.EkycScreen
+import org.example.export.screen.form.FormScreen
 import org.example.export.screen.loan.LoanScreen
 import org.example.export.screen.result.ResultScreen
 
@@ -25,7 +26,7 @@ fun AppNavHost(navController: NavHostController) {
             EkycScreen(
                 onSuccess = {
                     println("EkycScreen: onSuccess")
-                    navController.navigate(NavRoute.Result.route)
+                    navController.navigate(NavRoute.Form.route)
                 }
             )
         }
@@ -37,6 +38,14 @@ fun AppNavHost(navController: NavHostController) {
                         NavRoute.Loan.route,
                         inclusive = false
                     )
+                }
+            )
+        }
+
+        composable(NavRoute.Form.route) {
+            FormScreen(
+                onSubmit = {
+                    navController.navigate(NavRoute.Result.route)
                 }
             )
         }
