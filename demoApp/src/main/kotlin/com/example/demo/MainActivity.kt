@@ -14,63 +14,17 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import org.example.export.auth.AuthManager
+import org.example.export.ExportSDK
 
 class MainActivity : ComponentActivity() {
 
-    private val authManager = AuthManager()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContent {
-            MaterialTheme {
-                var isLoggedIn by remember { mutableStateOf(false) }
-                var userEmail by remember { mutableStateOf("") }
-
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    if (isLoggedIn) {
-                        // Home Screen after login
-                        HomeScreen(
-                            email = userEmail,
-                            onLogout = {
-                                authManager.logout()
-                                isLoggedIn = false
-                                userEmail = ""
-                                Toast.makeText(
-                                    this@MainActivity,
-                                    "Logged out successfully",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            }
-                        )
-                    } else {
-                        // Login Screen from SDK
-                        LoginScreen(
-                            authManager = authManager,
-                            onLoginSuccess = { email ->
-                                userEmail = email
-                                isLoggedIn = true
-                                Toast.makeText(
-                                    this@MainActivity,
-                                    "Welcome $email!",
-                                    Toast.LENGTH_LONG
-                                ).show()
-                            },
-                            onLoginError = { error ->
-                                Toast.makeText(
-                                    this@MainActivity,
-                                    "Login failed: $error",
-                                    Toast.LENGTH_LONG
-                                ).show()
-                            }
-                        )
-                    }
-                }
-            }
+            ExportSDK.Start()
         }
     }
 }
