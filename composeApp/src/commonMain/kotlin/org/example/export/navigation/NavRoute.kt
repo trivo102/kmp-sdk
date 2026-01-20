@@ -6,4 +6,6 @@ sealed class NavRoute(val route: String) {
     object Result : NavRoute("result")
 
     object Form : NavRoute("form")
+
+    object Nfc : NavRoute("nfc")
 }

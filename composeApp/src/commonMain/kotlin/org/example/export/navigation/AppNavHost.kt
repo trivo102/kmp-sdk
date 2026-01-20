@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import org.example.export.screen.ekyc.EkycScreen
 import org.example.export.screen.form.FormScreen
 import org.example.export.screen.loan.LoanScreen
+import org.example.export.screen.nfc.NfcScreen
 import org.example.export.screen.result.ResultScreen
 
 @Composable
@@ -45,6 +46,14 @@ fun AppNavHost(navController: NavHostController) {
         composable(NavRoute.Form.route) {
             FormScreen(
                 onSubmit = {
+                    navController.navigate(NavRoute.Nfc.route)
+                }
+            )
+        }
+
+        composable(NavRoute.Nfc.route) {
+            NfcScreen(
+                onSuccess = {
                     navController.navigate(NavRoute.Result.route)
                 }
             )
