@@ -15,22 +15,23 @@ kotlin {
     }
 
     listOf(
+        iosX64(),
         iosArm64(),
         iosSimulatorArm64()
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
             baseName = "ExportSDK"
             isStatic = true
-
-            // Export all public APIs
-            export(libs.androidx.lifecycle.viewmodelCompose)
-            export(libs.androidx.lifecycle.runtimeCompose)
+            linkerOpts("-lsqlite3")
         }
     }
 
     sourceSets {
         androidMain.dependencies {
             implementation(libs.androidx.activity.compose)
+            implementation(libs.androidx.lifecycle.viewmodelCompose)
+            implementation(libs.androidx.lifecycle.runtimeCompose)
+
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -39,10 +40,15 @@ kotlin {
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
-            implementation(libs.androidx.lifecycle.viewmodelCompose)
-            implementation(libs.androidx.lifecycle.runtimeCompose)
-            implementation(libs.androidx.navigation.compose)
         }
+        iosMain.dependencies {
+            implementation(compose.runtime)
+            implementation(compose.foundation)
+            implementation(compose.material3)
+            implementation(compose.ui)
+            implementation("org.jetbrains.compose.ui:ui-uikit:${libs.versions.composeMultiplatform.get()}")
+        }
+
         commonTest.dependencies {
             implementation(libs.kotlin.test)
         }
