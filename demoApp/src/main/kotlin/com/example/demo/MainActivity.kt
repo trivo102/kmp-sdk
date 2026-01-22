@@ -1,12 +1,7 @@
 package com.example.demo
-
-
-
 import androidx.activity.compose.setContent
 import androidx.compose.material3.MaterialTheme
-import org.example.export.ui.LoginScreen
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
@@ -17,8 +12,6 @@ import androidx.compose.ui.unit.dp
 import org.example.export.ExportSDK
 
 class MainActivity : ComponentActivity() {
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

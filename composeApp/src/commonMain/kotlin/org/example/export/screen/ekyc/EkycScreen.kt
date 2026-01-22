@@ -6,7 +6,6 @@ import androidx.compose.material3.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import org.example.export.component.PrimaryButton
-import org.example.export.screen.loan.MyContent
 
 @Composable
 internal fun EkycScreen(
